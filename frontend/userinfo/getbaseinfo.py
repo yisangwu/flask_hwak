@@ -14,5 +14,7 @@ def getbaseinfo(request):
     ret['x_extend'] = request.x_extend
     ret['version'] = request.x_public.get('version') or 0
     ret['uid'] = request.x_request.get('uid') or 0
+    ret['client_ip'] = request.x_client_ip or ''
+    ret['sig'] = request.x_sig
 
     return HelperRet.ret_json(ret)

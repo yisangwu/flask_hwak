@@ -11,6 +11,7 @@ import json
 from flask import Response, request
 from config.app import MOTHOD_SEPARATE
 from helper.helper_date import HelperDate
+from helper.helper_ip import HelperIp
 
 
 class HelperRet(object):
@@ -56,6 +57,8 @@ class HelperRet(object):
             request.x_sig = data_dict.get('sig') or None
             # 是否为bebug请求
             request.x_debug = data_dict.get('debug') or None
+            # 客户端IP
+            request.x_client_ip = HelperIp.get_client_ip(request)
 
             # 公共参数不能为空
             if not d_public or not isinstance(d_public, dict):
