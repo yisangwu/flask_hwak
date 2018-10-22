@@ -49,6 +49,9 @@ def index():
     # except Exception as e:
     #     # 找不到接口函数
     #     return HelperRet.ret_json(rdata='请求接口%s异常!' % request.x_method, rcode=-202) 
+    #     
+    # 执行接口
+    # return x_function(request)
 
     # 或者使用import_string
     from werkzeug.utils import import_string
