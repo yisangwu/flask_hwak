@@ -4,7 +4,7 @@
 memcached 测试
 '''
 from flask import request
-from loadclass.memcached import obj_memcached
+from loadclass.memcached import LoadMemcached
 from helper.helper_ret import HelperRet
 
 
@@ -25,25 +25,25 @@ def memcached_test(request):
 
 	key = 'x_mem'
 
-	obj_memcached.set(key, '12345')
+	LoadMemcached.obj_memcached().set(key, '12345')
 
 	ret.update(str_get=dict(
 			key=key,
-			get_value=obj_memcached.get(key))
+			get_value=LoadMemcached.obj_memcached().get(key))
 		)
 
-	obj_memcached.append(key, 'append')
+	LoadMemcached.obj_memcached().append(key, 'append')
 
 	ret.update(str_append=dict(
 			key=key,
-			get_value=obj_memcached.get(key))  # 12345append
+			get_value=LoadMemcached.obj_memcached().get(key))  # 12345append
 		)
 
-	obj_memcached.prepend(key, 'prepend')
+	LoadMemcached.obj_memcached().prepend(key, 'prepend')
 
 	ret.update(str_prepend=dict(
 			key=key,
-			get_value=obj_memcached.get(key))  # prepend12345append
+			get_value=LoadMemcached.obj_memcached().get(key))  # prepend12345append
 		)
 
 	return HelperRet.ret_json(ret)
