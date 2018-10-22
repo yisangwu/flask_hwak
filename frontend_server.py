@@ -13,10 +13,10 @@ from config.app import MOTHOD_SEPARATE
 from flask import request, url_for, redirect
 from helper.helper_ret import HelperRet
 
-app_server = Flask(__name__)
+frontend_server = Flask(__name__)
 
 
-@app_server.route('/', methods=['POST'])
+@frontend_server.route('/', methods=['POST'])
 @HelperRet.wraps_parse_params
 def index():
     '''
@@ -57,9 +57,9 @@ def index():
 if __name__ == '__main__':
     '''
     运行server
-    python app_server.py
+    python frontend_server.py
     '''
-    app_server.run(host='127.0.0.1',
+    frontend_server.run(host='127.0.0.1',
             port=8577,
             threaded=True,
             debug=True)
