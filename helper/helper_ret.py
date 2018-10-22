@@ -8,7 +8,7 @@ Helper
 import functools
 import json
 
-from flask import Response, request
+from flask import Response, request, jsonify
 from config.app import MOTHOD_SEPARATE
 from helper.helper_date import HelperDate
 from helper.helper_ip import HelperIp
@@ -155,4 +155,7 @@ class HelperRet(object):
                 rdata = dict()
 
         ret['data'] = rdata
-        return Response(json.dumps(ret), content_type='application/json')
+        # 可以 return Response(json.dumps(ret), content_type='application/json')
+
+        return jsonify(ret)
+

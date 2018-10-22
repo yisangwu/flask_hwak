@@ -16,5 +16,5 @@ class LoadMemcached(HelperSingleton):
         master memcached
         '''
         return LibMemcached(host=memcached.master_memcache.get('host'),
-                             port=memcached.master_memcache.get('port'),
-                             prefix=memcached.master_memcache.get('prefix'))
+                            port=memcached.master_memcache.get('port'),
+                            prefix=memcached.master_memcache.get('prefix'))

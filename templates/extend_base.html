@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}{% endblock title %}</title>
+    <!-- 新 Bootstrap4 核心 CSS 文件 -->
+    <link rel="stylesheet" href="{{url_for('static', filename='bootstrap.min.css')}}">
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="{{url_for('static', filename='jquery.min.js')}}"></script>
+    <!-- popper.min.js 用于弹窗、提示、下拉菜单 -->
+    <script src="{{url_for('static', filename='popper.min.js')}}"></script>
+    <!-- 最新的 Bootstrap4 核心 JavaScript 文件 -->
+    <script src="{{url_for('static', filename='bootstrap.min.js')}}"></script>    
+</head>
+<body>
+    {% block body %}
+    {% endblock body %}
+</body>
+    {% include 'include_footer.html' ignore missing %}
+</html>
