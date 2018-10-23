@@ -2,8 +2,8 @@
 '''
 请求入口文件
 
-frontend 不用 blueprint
-使用动态加载模块、函数的方式，根据请求接口动态调用
+backend 使用 blueprint
+使用动态注册蓝图的方式，根据url路由访问
 '''
 
 
