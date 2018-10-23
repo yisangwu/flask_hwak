@@ -6,10 +6,10 @@ redis
 
 from config import redis
 from library.lib_redis import LibRedis
-from helper.helper_singleton import HelperSingleton
+from helper.helper_class import ObjSingleton
 
 
-class LoadRedis(HelperSingleton):
+class LoadRedis(ObjSingleton):
 
     @staticmethod
     def obj_redis():

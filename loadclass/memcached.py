@@ -6,10 +6,10 @@ memcached
 from config import memcached
 
 from library.lib_memcached import LibMemcached
-from helper.helper_singleton import HelperSingleton
+from helper.helper_class import ObjSingleton
 
 
-class LoadMemcached(HelperSingleton):
+class LoadMemcached(ObjSingleton):
 
     def obj_memcached():
         '''
