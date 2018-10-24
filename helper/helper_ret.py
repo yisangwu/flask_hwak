@@ -158,4 +158,3 @@ class HelperRet(object):
         # 可以 return Response(json.dumps(ret), content_type='application/json')
 
         return jsonify(ret)
-

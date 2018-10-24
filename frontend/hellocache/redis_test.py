@@ -9,55 +9,59 @@ from helper.helper_ret import HelperRet
 
 
 def redis_test(request):
-	'''
-	测试下redis的操作
-	postdata={
-				"public":{"version":"208","packid":"100"},
-				"request":{"method":"hellocache#redis_test","uid":"66","field":"nickname"},
-				"extend":{"net":"wifi","device":"iphone  10  plus","macid":"aaaaaaaaaaaa"},
-				"sig":"4ef43e75ad799f7775ed366d8c3fc8b8", 
-				"debug":1
-				}	
-	'''
-	ret = dict()
-	ret['host'] = request.host
-	ret['host_url'] = request.host_url
+    '''
+    测试下redis的操作
+    postdata={
+                            "public":{"version":"208","packid":"100"},
+                            "request":{"method":"hellocache#redis_test","uid":"66","field":"nickname"},
+                            "extend":{"net":"wifi","device":"iphone  10  plus","macid":"aaaaaaaaaaaa"},
+                            "sig":"4ef43e75ad799f7775ed366d8c3fc8b8", 
+                            "debug":1
+                            }	
+    '''
+    ret = dict()
+    ret['host'] = request.host
+    ret['host_url'] = request.host_url
 
-	key_string = 'x_string'
-	LoadRedis.obj_redis().set(key_string, 123)
+    key_string = 'x_string'
+    LoadRedis.obj_redis().set(key_string, 123)
 
-	# string
-	ret.update(redis_get=dict(key=key_string, 
-							  get_value=LoadRedis.obj_redis().get(key_string)))
+    # string
+    ret.update(redis_get=dict(key=key_string,
+                              get_value=LoadRedis.obj_redis().get(key_string)))
 
-	# hash
-	key_hash = 'x_hash'
-	for k in range(1, 5):
-		LoadRedis.obj_redis().hSet(key_hash, 'k_%s' % k, 1)
+    # hash
+    key_hash = 'x_hash'
+    for k in range(1, 5):
+        LoadRedis.obj_redis().hSet(key_hash, 'k_%s' % k, 1)
 
-	ret.update(redis_hash=dict(key=key_hash, hash_value=list(LoadRedis.obj_redis().hGetAll(key_hash))))
+    ret.update(redis_hash=dict(key=key_hash, hash_value=list(
+        LoadRedis.obj_redis().hGetAll(key_hash))))
 
-	# list
-	key_list = 'x_list'
-	for i in range(1,5):
-		LoadRedis.obj_redis().rPush(key_list, i)
+    # list
+    key_list = 'x_list'
+    for i in range(1, 5):
+        LoadRedis.obj_redis().rPush(key_list, i)
 
-	ret.update(redis_list=dict(key=key_list, list_value=list(LoadRedis.obj_redis().lGetRange(key_list))))
+    ret.update(redis_list=dict(key=key_list, list_value=list(
+        LoadRedis.obj_redis().lGetRange(key_list))))
 
-	# set
-	key_set = 'x_set'
-	for i in range(1, 5):
-		LoadRedis.obj_redis().sAdd(key_set, i)
+    # set
+    key_set = 'x_set'
+    for i in range(1, 5):
+        LoadRedis.obj_redis().sAdd(key_set, i)
 
-	ret.update(redis_set=dict(key=key_set, set_value=list(LoadRedis.obj_redis().sMembers(key_set))))
+    ret.update(redis_set=dict(key=key_set, set_value=list(
+        LoadRedis.obj_redis().sMembers(key_set))))
 
-	#zset
-	key_zset = 'x_zset' 
-	import random
-	LoadRedis.obj_redis().zAdd(key_zset, a=random.randint(0, 9))
-	LoadRedis.obj_redis().zAdd(key_zset, b=random.randint(0, 9))
-	LoadRedis.obj_redis().zAdd(key_zset, c=random.randint(0, 9))
+    # zset
+    key_zset = 'x_zset'
+    import random
+    LoadRedis.obj_redis().zAdd(key_zset, a=random.randint(0, 9))
+    LoadRedis.obj_redis().zAdd(key_zset, b=random.randint(0, 9))
+    LoadRedis.obj_redis().zAdd(key_zset, c=random.randint(0, 9))
 
-	ret.update(redis_zset=dict(key=key_zset, zset_value=list(LoadRedis.obj_redis().zRange(key_zset, 0, -1))))
+    ret.update(redis_zset=dict(key=key_zset, zset_value=list(
+        LoadRedis.obj_redis().zRange(key_zset, 0, -1))))
 
-	return HelperRet.ret_json(ret)
+    return HelperRet.ret_json(ret)

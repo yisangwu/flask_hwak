@@ -26,7 +26,7 @@ class HelperDate(object):
         今天凌晨0点时间戳
         '''
         return int(time.mktime(time.strptime(str(HelperDate.date_today()),
-                               '%Y-%m-%d')))
+                                             '%Y-%m-%d')))
 
     @staticmethod
     def date_today():

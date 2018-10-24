@@ -49,7 +49,8 @@ class LibRedis:
         if prefix:
             self.key_prefix = prefix.strip()
         # construct
-        self.obj_redis = StrictRedis(host=host, port=port, db=db, charset='utf-8')
+        self.obj_redis = StrictRedis(
+            host=host, port=port, db=db, charset='utf-8')
 
     def key_make(self, keyname=None):
         """
@@ -460,7 +461,7 @@ class LibRedis:
         result = self.obj_redis.lrange(keyname, start, end)
         if not result:
             return None
-        #bytes to str
+        # bytes to str
         ret_list = list()
         for v in result:
             ret_list.append(bytes.decode(v))
@@ -793,7 +794,8 @@ class LibRedis:
             return None
 
         keyname = self.key_make(keyname.strip())
-        result = self.obj_redis.zrangebyscore(keyname, min, max, withscores=withscores)
+        result = self.obj_redis.zrangebyscore(
+            keyname, min, max, withscores=withscores)
 
         if not result:
             return None
@@ -826,7 +828,8 @@ class LibRedis:
             return None
 
         keyname = self.key_make(keyname.strip())
-        result = self.obj_redis.zrevrangebyscore(keyname, max, min, withscores=withscores)
+        result = self.obj_redis.zrevrangebyscore(
+            keyname, max, min, withscores=withscores)
 
         if not result:
             return None
@@ -886,7 +889,8 @@ class LibRedis:
             return None
 
         keyname = self.key_make(keyname.strip())
-        result = self.obj_redis.zrange(keyname, start, end, withscores=withscores)
+        result = self.obj_redis.zrange(
+            keyname, start, end, withscores=withscores)
 
         if not result:
             return None
@@ -918,7 +922,8 @@ class LibRedis:
             return None
 
         keyname = self.key_make(keyname.strip())
-        result = self.obj_redis.zrevrange(keyname, start, end, withscores=withscores)
+        result = self.obj_redis.zrevrange(
+            keyname, start, end, withscores=withscores)
 
         if not result:
             return None

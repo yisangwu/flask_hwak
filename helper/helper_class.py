@@ -5,10 +5,16 @@ Helper
 @subpackage Helper_Singleton
 单例模式
 '''
+
+
 class ObjSingleton(object):
+    '''
+    单例继承
+    '''
     def __new__(cls, *args, **kwargs):
         if not hasattr(cls, '_instance'):
-            cls._instance = super(HelperSingleton, cls).__new__(cls, *args, **kwargs)
+            cls._instance = super(HelperSingleton, cls).__new__(
+                cls, *args, **kwargs)
         return cls._instance
 
 

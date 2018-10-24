@@ -24,4 +24,4 @@ def index():
     '''
     http://127.0.0.1:8577/friend/
     '''
-    return  Response('132465')
+    return Response('132465')

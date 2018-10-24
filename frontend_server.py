@@ -40,26 +40,27 @@ def index():
     #     interface_file = importlib.import_module('frontend.%s.%s' % (module,function))
     # except Exception as e:
     #     # 找不到接口文件
-    #     print(e)
-    #     return HelperRet.ret_json(rdata='请求接口%s不存在!' % request.x_method, rcode=-201)
+    #     return HelperRet.ret_json(rdata='请求接口%s不存在!' % request.x_method,
+    # rcode=-201)
 
     # # 动态导入接口函数
     # try:
     #     x_function = getattr(interface_file, function)
     # except Exception as e:
     #     # 找不到接口函数
-    #     return HelperRet.ret_json(rdata='请求接口%s异常!' % request.x_method, rcode=-202) 
-    #     
+    #     return HelperRet.ret_json(rdata='请求接口%s异常!' % request.x_method, rcode=-202)
+    #
     # 执行接口
     # return x_function(request)
 
     # 或者使用import_string
     from werkzeug.utils import import_string
     try:
-        x_function = import_string('frontend.%s.%s.%s' % (module, function, function))
+        x_function = import_string('frontend.%s.%s.%s' %
+                                   (module, function, function))
     except Exception as e:
-        return HelperRet.ret_json(rdata='请求接口%s异常!' % request.x_method, rcode=-202) 
-    
+        return HelperRet.ret_json(rdata='请求接口%s异常!' % request.x_method, rcode=-202)
+
     # 执行接口
     return x_function(request)
 
@@ -70,6 +71,6 @@ if __name__ == '__main__':
     python frontend_server.py
     '''
     frontend_server.run(host='127.0.0.1',
-            port=8577,
-            threaded=True,
-            debug=True)
+                        port=8577,
+                        threaded=True,
+                        debug=True)

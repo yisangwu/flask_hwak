@@ -43,8 +43,10 @@ for blue_dir in backend_dir:
         continue
 
     # 导入并注册
-    class_blueprint = import_string('%s.%s.%s_blueprint' % ('backend', blue_dir, blue_dir))
-    backend_server.register_blueprint(class_blueprint, url_prefix='/%s' % blue_dir)
+    class_blueprint = import_string(
+        '%s.%s.%s_blueprint' % ('backend', blue_dir, blue_dir))
+    backend_server.register_blueprint(
+        class_blueprint, url_prefix='/%s' % blue_dir)
 
 
 if __name__ == '__main__':
@@ -53,6 +55,6 @@ if __name__ == '__main__':
     python backend_server.py
     '''
     backend_server.run(host='127.0.0.1',
-            port=8577,
-            threaded=True,
-            debug=True)
+                       port=8577,
+                       threaded=True,
+                       debug=True)
