@@ -1,11 +1,11 @@
-# -*- coding: utf-8 -*-
+# coding=utf-8
 '''
-请求入口文件
+backend
+后台请求
 
 backend 使用 blueprint
 使用动态注册蓝图的方式，根据url路由访问
 '''
-
 
 import os
 import json
@@ -15,7 +15,7 @@ from flask import request, url_for, redirect
 from config.app import get_backend_path
 from helper.helper_ret import HelperRet
 
-
+# 实例化Flask对象
 backend_server = Flask(__name__)
 
 # 遍历backend下面目录
@@ -48,10 +48,9 @@ for blue_dir in backend_dir:
     backend_server.register_blueprint(
         class_blueprint, url_prefix='/%s' % blue_dir)
 
-
 if __name__ == '__main__':
     '''
-    运行server
+    启动服务器
     python backend_server.py
     '''
     backend_server.run(host='127.0.0.1',

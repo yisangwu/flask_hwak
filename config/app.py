@@ -18,6 +18,13 @@ def get_root_path():
     return os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
 
 
+def get_templates_path():
+    '''
+    公共模板目录
+    '''
+    return get_root_path() + os.sep + 'templates'
+
+
 def get_frontend_path():
     '''
     frontend 路径

@@ -21,7 +21,7 @@ class ObjSingleton(object):
 def import_views(app=None, module=None, file=None):
     '''
     动态加载views
-    @param app: 
+    @param app:
     @param module:  __init__.py 文件所在目录
     @param file: __init__.py
     '''
@@ -31,17 +31,15 @@ def import_views(app=None, module=None, file=None):
     import os
     # __init__.py 文件所在目录
     path = os.path.dirname(os.path.realpath(file))
-
     # list当前目录文件
     DIR_FILE_LIST = os.listdir(path)
-
     # 开始导入
     if DIR_FILE_LIST:
         from werkzeug.utils import import_string
         # 遍历导入
         for py_file in DIR_FILE_LIST:
             # 目录，忽略
-            if os.path.isdir(py_file):
+            if os.path.isdir(os.path.join(path, py_file)):
                 continue
             # __init__ 忽略
             if py_file.startswith('_'):

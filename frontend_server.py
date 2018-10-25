@@ -1,5 +1,7 @@
-# -*- coding: utf-8 -*-
+# coding=utf-8
 '''
+frontend server
+对接client请求
 请求入口文件
 
 frontend 不用 blueprint
@@ -13,14 +15,17 @@ from config.app import MOTHOD_SEPARATE
 from flask import request, url_for, redirect
 from helper.helper_ret import HelperRet
 
+# 实例化Flask对象
 frontend_server = Flask(__name__)
 
 
+# 添加入口路由
 @frontend_server.route('/', methods=['POST'])
 @HelperRet.wraps_parse_params
 def index():
     '''
     请求地址：http://127.0.0.1:8577/
+    客户端content-type：application/x-www-form-urlencoded
     post参数格式：
     postdata={
                 "public":{"version":"208","packid":"100"},
@@ -67,7 +72,7 @@ def index():
 
 if __name__ == '__main__':
     '''
-    运行server
+    启动服务器
     python frontend_server.py
     '''
     frontend_server.run(host='127.0.0.1',
