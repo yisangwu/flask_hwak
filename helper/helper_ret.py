@@ -9,7 +9,7 @@ import functools
 import json
 
 from flask import Response, request, jsonify
-from config.app import MOTHOD_SEPARATE
+from config import MOTHOD_SEPARATE
 from helper.helper_date import HelperDate
 from helper.helper_ip import HelperIp
 

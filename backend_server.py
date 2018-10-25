@@ -12,7 +12,7 @@ import json
 import importlib
 from flask import Flask
 from flask import request, url_for, redirect
-from config.app import PATH_BACKEND
+from config import PATH_BACKEND
 from helper.helper_ret import HelperRet
 
 # 实例化Flask对象

@@ -2,9 +2,11 @@
 '''
 APP 核心配置
 '''
+# 环境
+ENVIRONMENT = 'development'
+
 # 参数签名KEY
 SIGN_SECRET_KEY = 'Pqcfje5NL0sx@WbB9-drYVki'
-
 # 分隔符
 MOTHOD_SEPARATE = '#'
 
@@ -21,3 +23,18 @@ PATH_FRONTEND = os.path.join(PATH_ROOT, 'frontend')
 
 # backend 目录
 PATH_BACKEND = os.path.join(PATH_ROOT, 'backend')
+
+
+def load_settings():
+    """
+    根据环境变量，加载配置
+    """
+    if ENVIRONMENT in ['development']:
+        from .setting_dev import SettingDev
+        return SettingDev
+    elif ENVIRONMENT in ['production']:
+        from .setting_pro import SettingPro
+        return SettingPro
+    else:
+        from .settings import BaseSettings
+        return BaseSettings
