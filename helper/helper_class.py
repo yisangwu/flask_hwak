@@ -33,6 +33,7 @@ def import_views(app=None, module=None, file=None):
     path = os.path.dirname(os.path.realpath(file))
     # list当前目录文件
     DIR_FILE_LIST = os.listdir(path)
+
     # 开始导入
     if DIR_FILE_LIST:
         from werkzeug.utils import import_string

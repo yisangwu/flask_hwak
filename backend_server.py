@@ -12,7 +12,7 @@ import json
 import importlib
 from flask import Flask
 from flask import request, url_for, redirect
-from config.app import get_backend_path
+from config.app import PATH_BACKEND
 from helper.helper_ret import HelperRet
 
 # 实例化Flask对象
@@ -20,9 +20,8 @@ backend_server = Flask(__name__)
 
 # 遍历backend下面目录
 # 按规则注册蓝图
-BACKEN_PATH = get_backend_path()
 try:
-    backend_dir = os.listdir(BACKEN_PATH)
+    backend_dir = os.listdir(PATH_BACKEND)
 except Exception as e:
     raise 'backend_dir listdir failed!'
 
@@ -35,7 +34,7 @@ from werkzeug.utils import import_string
 # 遍历注册 Blueprint
 for blue_dir in backend_dir:
     # 不是目录，忽略
-    if not os.path.isdir(os.path.join(BACKEN_PATH, blue_dir)):
+    if not os.path.isdir(os.path.join(PATH_BACKEND, blue_dir)):
         continue
 
     # 缓存目录，忽略

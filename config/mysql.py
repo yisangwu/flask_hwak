@@ -7,7 +7,7 @@ SQLAlchemy是一个很强大的关系型数据库框架，支持多种数据库�
 pip install pymysql
 pip install flask-sqlalchemy
 '''
-from flask.ext.sqlalchemy import SQLAlchemy
+
 
 DB_HOST = '192.168.101.215'
 DB_USERNAME = 'mysql'

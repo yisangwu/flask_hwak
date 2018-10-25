@@ -16,7 +16,8 @@ def show():
     # return render_template('index.html')
 
     # 渲染templates/friend/index.html
-    return render_template('friend/index.html')
+    data = dict(aa=1, bb=2, cc=3)
+    return render_template('friend/index.html', **data)
 
 
 @friend_blueprint.route('/')
