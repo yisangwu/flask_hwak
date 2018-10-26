@@ -47,22 +47,12 @@ class BaseSettings(object):
     # 如果设置成 True，SQLAlchemy 将会记录所有 发到标准输出(stderr)的语句
     SQLALCHEMY_ECHO = False
 
-    from .mysql import DB_USERNAME, DB_PASSWORD, DB_HOST
-    '''
-    mysql 连接资源符
-    SQLAlchemy 把一个引擎的源表示为一个连同设定引擎选项的可选字符串参数的 URI。URI 的形式是:
-    dialect+driver://username:password@host:port/database
-    '''
-    DB_URI = 'mysql+pymsql://%s:%s@%s/' % (DB_USERNAME, DB_PASSWORD, DB_HOST)
+    from .mysql import SQLALCHEMY_DATABASE_URI
 
     # SQLAlchemy配置
-    # 单库
-    # app.config['SQLALCHEMY_DATABASE_URI']= 'flask_user': '%s/flask_user' % DB_URI
+    #SQLALCHEMY_DATABASE_URI = SQLALCHEMY_DATABASE_URI
     # 多库
-    SQLALCHEMY_BINDS = {
-        'flask_user': '%s/flask_user' % DB_URI,
-        'flask_friend': '%s/flask_friend' % DB_URI,
-    }
+    #SQLALCHEMY_BINDS = MYSQL_BINDS
     # 数据库连接池的大小。默认是数据库引擎的默认值 （通常是 5）。
     SQLALCHEMY_POOL_SIZE = 5
     # 指定数据库连接池的超时时间。默认是 10

@@ -7,8 +7,34 @@ SQLAlchemy是一个很强大的关系型数据库框架，支持多种数据库�
 pip install pymysql
 pip install flask-sqlalchemy
 '''
+from sqlalchemy import create_engine
 
 
 DB_HOST = '192.168.101.215'
 DB_USERNAME = 'mysql'
 DB_PASSWORD = 123456
+
+
+# echo= True 会打印操作数据库的信息
+flask_user_engine = create_engine('mysql+pymysql://%s:%s@%s/flask_user' %
+                                  (DB_USERNAME, DB_PASSWORD, DB_HOST), echo=True)
+
+
+'''
+mysql 连接资源符
+SQLAlchemy 把一个引擎的源表示为一个连同设定引擎选项的可选字符串参数的 URI。URI 的形式是:
+dialect+driver://username:password@host:port/database
+
+MYSQL_DB_URI = 'mysql+pymysql://%s:%s@%s' % (
+    DB_USERNAME, DB_PASSWORD, DB_HOST)
+
+# SQLAlchemy配置
+# 单库
+SQLALCHEMY_DATABASE_URI = '%s/flask_user' % MYSQL_DB_URI
+
+# 多库
+# SQLALCHEMY_BINDS = {
+#     'flask_user': '%s/flask_user' % MYSQL_DB_URI,
+#     'flask_friend': '%s/flask_friend' % MYSQL_DB_URI,
+# }
+'''

@@ -11,17 +11,9 @@ frontend 不用 blueprint
 import json
 import importlib
 from flask import Flask, request
-from flask_sqlalchemy import SQLAlchemy
-from config import MOTHOD_SEPARATE, load_settings
+from config import MOTHOD_SEPARATE
 from helper.helper_ret import HelperRet
-
-# 实例化Flask对象
-frontend_server = Flask(__name__)
-
-# Load config
-app_settings = load_settings()
-frontend_server.config.from_object(app_settings)
-db_obj = SQLAlchemy(frontend_server)
+from frontend import frontend_server
 
 
 # 添加入口路由
