@@ -39,17 +39,16 @@ from sqlalchemy import Column, Integer, SmallInteger, String, DateTime
 
 
 class User(ModelBase):
-	"""
-	>>> from models.user import User
-	>>> User
-	<class 'models.user.User'>
-	>>> User()
-	<User(name='None', name='None', password='None')>
-	>>>
-	>>> print(User())
-	我是一个字符串
-	"""
-
+    """
+    >>> from models.user import User
+    >>> User
+    <class 'models.user.User'>
+    >>> User()
+    <User(name='None', name='None', password='None')>
+    >>>
+    >>> print(User())
+    我是一个字符串
+    """
     __tablename__ = 'users'
     id = Column(Integer, primary_key=True)
     name = Column(String(10))
