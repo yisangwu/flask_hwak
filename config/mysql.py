@@ -11,19 +11,21 @@ from sqlalchemy import create_engine
 
 
 DB_HOST = '192.168.101.215'
+DB_PORT = 3306
 DB_USERNAME = 'mysql'
 DB_PASSWORD = 123456
-
+DB_CHARSET = 'utf8mb4'
 
 # echo= True 会打印操作数据库的信息
-flask_user_engine = create_engine('mysql+pymysql://%s:%s@%s/flask_user' %
-                                  (DB_USERNAME, DB_PASSWORD, DB_HOST), echo=True)
+flask_user_engine = create_engine('mysql+pymysql://%s:%s@%s:%s/flask_user?charset=%s' %
+                                  (DB_USERNAME, DB_PASSWORD, DB_HOST, DB_PORT, DB_CHARSET), echo=True)
 
 
 '''
 mysql 连接资源符
 SQLAlchemy 把一个引擎的源表示为一个连同设定引擎选项的可选字符串参数的 URI。URI 的形式是:
 dialect+driver://username:password@host:port/database
+SQLAlchemy无法修改表结构，如果需要可以使用SQLAlchemy开发者开源的另外一个软件Alembic来完成
 
 MYSQL_DB_URI = 'mysql+pymysql://%s:%s@%s' % (
     DB_USERNAME, DB_PASSWORD, DB_HOST)

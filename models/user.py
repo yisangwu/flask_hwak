@@ -50,20 +50,28 @@ class User(ModelBase):
     我是一个字符串
     """
     __tablename__ = 'users'
-    id = Column(Integer, primary_key=True)
-    name = Column(String(10))
-    password = Column(String(32), nullable=False)
-    create_time = Column(DateTime, nullable=False)
+    __bind_key__ = 'flask_user'
+    id = Column(Integer, doc='用户ID自增', primary_key=True)
+    name = Column(String(10), doc='用户名', nullable=False)
+    icon = Column(String(150), doc='头像', nullable=False)
+    gender = Column(Integer, doc='性别', nullable=False)
+    password = Column(String(32), doc='密码', nullable=False)
+    create_time = Column(DateTime, doc='注册时间', nullable=False)
+    login_time = Column(DateTime, doc='最后登陆时间', nullable=False)
 
     def __repr__(self):
         """
         __repr__: 返回一个可以用来表示对象的可打印字符串
 
         """
-        return "<User(name='%s', name='%s', password='%s')>" % (self.name, self.name, self.password)
+        return "<User(name='%s', name='%s', password='%s')>" % (self.name,
+                                                                self.name, self.password)
 
     def __str__(self):
         """
         __str__使用：被打印的时候需要以字符串的形式输出的时候，就会找到这个方法，并将返回值打印出来
         """
         return "我是一个字符串"
+
+    def insert():
+        pass

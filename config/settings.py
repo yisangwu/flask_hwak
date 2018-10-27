@@ -47,7 +47,7 @@ class BaseSettings(object):
     # 如果设置成 True，SQLAlchemy 将会记录所有 发到标准输出(stderr)的语句
     SQLALCHEMY_ECHO = False
 
-    from .mysql import SQLALCHEMY_DATABASE_URI
+    #from .mysql import SQLALCHEMY_DATABASE_URI
 
     # SQLAlchemy配置
     #SQLALCHEMY_DATABASE_URI = SQLALCHEMY_DATABASE_URI
