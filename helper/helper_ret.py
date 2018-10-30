@@ -1,15 +1,15 @@
 # -*- coding: utf-8 -*-
-'''
+"""
 Helper
 @sub_package HelperRet
 参数解析，签名校验，响应返回
-'''
+"""
 
 import functools
 import json
 
 from flask import Response, request, jsonify
-from config import MOTHOD_SEPARATE
+from config import MOTHOD_SEPARATE, SIGN_SECRET_KEY
 from helper.helper_date import HelperDate
 from helper.helper_ip import HelperIp
 
@@ -32,13 +32,11 @@ class HelperRet(object):
             # postdata = json格式字符串
             json_str = request.form.get("postdata")
             if not json_str:
-                return HelperRet.ret_json(rdata='POST参数为空!',
-                                          rcode=-101)
+                return HelperRet.ret_json(rdata='POST参数为空!', rcode=-101)
             # 格式化为dict
             data_dict = json.loads(json_str)
             if not data_dict or not isinstance(data_dict, dict):
-                return HelperRet.ret_json(rdata='POST参数格式错误,解析失败!',
-                                          rcode=-102)
+                return HelperRet.ret_json(rdata='POST参数格式错误,解析失败!', rcode=-102)
             # 公共参数
             d_public = data_dict.get('public') or dict()
             # 接口请求参数
@@ -62,16 +60,13 @@ class HelperRet(object):
 
             # 公共参数不能为空
             if not d_public or not isinstance(d_public, dict):
-                return HelperRet.ret_json(rdata='公共参数为空或格式错误!',
-                                          rcode=-103)
+                return HelperRet.ret_json(rdata='公共参数为空或格式错误!', rcode=-103)
             # 接口参数不能为空
             if not d_request or not isinstance(d_request, dict):
-                return HelperRet.ret_json(rdata='接口请求参数为空或格式错误!',
-                                          rcode=-104)
+                return HelperRet.ret_json(rdata='接口请求参数为空或格式错误!', rcode=-104)
             # 附加参数不能为空
             if not d_extend or not isinstance(d_extend, dict):
-                return HelperRet.ret_json(rdata='附加参数为空或格式错误!',
-                                          rcode=-105)
+                return HelperRet.ret_json(rdata='附加参数为空或格式错误!', rcode=-105)
             # 请求接口无效
             if not request.x_method or MOTHOD_SEPARATE not in request.x_method:
                 return HelperRet.ret_json(rdata='无效的请求接口！', rcode=106)
@@ -84,8 +79,7 @@ class HelperRet(object):
             # 非debug模式下，校验签名
             if not request.x_debug:
                 if not request.x_sig or len(request.x_sig) != 32:
-                    return HelperRet.ret_json(rdata='签名为空或格式错误!',
-                                              rcode=-107)
+                    return HelperRet.ret_json(rdata='签名为空或格式错误!', rcode=-107)
             # 校验参数签名
             sign_dict = dict()
             sign_dict['public'] = d_public
@@ -93,8 +87,7 @@ class HelperRet(object):
             sign_dict['extend'] = d_extend
 
             if HelperRet.check_signature(sign_dict) != request.x_sig:
-                return HelperRet.ret_json(rdata='参数签名错误!',
-                                          rcode=-108)
+                return HelperRet.ret_json(rdata='参数签名错误!', rcode=-108)
 
             # 执行使用装饰器的函数
             return func(*args, **kwargs)
@@ -102,7 +95,7 @@ class HelperRet(object):
         return parse_params
 
     @staticmethod
-    def check_signature(sign_dict=dict()):
+    def check_signature(sign_dict=None):
         """
         检查参数签名
         @param sign_dict: dict 参与签名的参数
@@ -123,19 +116,18 @@ class HelperRet(object):
             return False
 
         # 将密钥拼接到签名字符串最后面
-        from config.app import SIGN_SECRET_KEY
         sign_str += SIGN_SECRET_KEY
 
         return hashlib.md5(sign_str.encode('utf-8')).hexdigest()
 
     @staticmethod
     def ret_json(rdata=None, rcode=1):
-        '''
+        """
         统一的接口响应
-        @param rdata： string/dict 响应数据， rcode<0 时为string
-        @param rcode： int 错误码，默认为1, 正常返回， 小于0 为错误响应
-        @return string  json格式字符串
-        '''
+        :param rdata:  string/dict 响应数据， rcode<0 时为string
+        :param rcode:  int 错误码，默认为1, 正常返回， 小于0 为错误响应
+        :return:  json格式字符串
+        """
         # 有无设置x_method
         if hasattr(request, 'x_extend'):
             method = request.x_method

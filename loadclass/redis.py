@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-'''
+"""
 实例化 instantiation
 redis
-'''
+"""
 
 from config import redis
 from library.lib_redis import LibRedis

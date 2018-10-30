@@ -9,5 +9,3 @@ frontend_server = Flask(__name__)
 
 # Load config
 frontend_server.config.from_object(load_settings())
-
-print(frontend_server.config)

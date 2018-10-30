@@ -1,8 +1,8 @@
 # coding=utf-8
-'''
+"""
 Flask APP配置
 app = Flask(__name__)
-1. 直接设置 
+1. 直接设置
   	app.config['TESTING'] = True
 	某些配置值还转移到了 Flask 对象中，可以直接通过 Flask 来操作:
 	app.testing = True
@@ -13,20 +13,20 @@ app = Flask(__name__)
 	    )
 
 2. 通过对象加载
-	app.config.from_object('yourapplication.default_settings')
+    app.config.from_object('yourapplication.default_settings')
 3. 通过环境变量加载配置
-	export MyAppConfig=/path/to/settings.cfg
-	app.config.from_envvar('MyAppConfig')    
+    export MyAppConfig=/path/to/settings.cfg
+    app.config.from_envvar('MyAppConfig')
 4. 通过配置文件
-	app.config.from_pyfile('dev_config.py') #  这里dev_config.py是文件 
-'''
+   app.config.from_pyfile('dev_config.py') #  这里dev_config.py是文件
+"""
 
 
 class BaseSettings(object):
-    '''
-        基本配置
-        不同环境的配置都继承此类
-    '''
+    """
+    基本配置
+    不同环境的配置都继承此类
+    """
     # 密钥用于会话 cookie 的安全签名，并可用于应用或者扩展的其他安全需求。import os; print(os.urandom(24))
     SECRET_KEY = b'A\x9fP\x12\xc6\x9c\xa0P/z\x80\xe8\xb4Tk\x94\xafa\xa6br\x96H\xa4'
 

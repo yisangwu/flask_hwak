@@ -1,7 +1,7 @@
 # coding=utf-8
-'''
+"""
 group
-'''
+"""
 
 import flask
 from flask import Flask, Response

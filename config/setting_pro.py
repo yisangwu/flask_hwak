@@ -1,7 +1,7 @@
 # coding=utf-8
-'''
+"""
 正式配置
-'''
+"""
 from .settings import BaseSettings
 
 
@@ -9,9 +9,8 @@ class SettingPro(BaseSettings):
     """
     正式配置
     """
-
     def __init__(self, arg):
-        super(SettingTest, self).__init__()
+        super(SettingPro, self).__init__()
         self.arg = arg
 
     DEBUG = True

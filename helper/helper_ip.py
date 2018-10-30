@@ -1,11 +1,8 @@
 # -*- coding: utf-8 -*-
-'''
+"""
 Helper
 @sub_package HelperIp
-'''
-
-import datetime
-import time
+"""
 
 
 class HelperIp(object):
@@ -15,6 +12,11 @@ class HelperIp(object):
 
     @staticmethod
     def get_client_ip(request):
+        """
+        获取客户端真实IP地址
+        :param request:
+        :return:
+        """
         client_ip = request.headers.get('HTTP_CDN_SRC_IP', '')
         # 没有
         if not client_ip:

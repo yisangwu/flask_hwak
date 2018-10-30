@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
-'''
+"""
 Helper
-'''
+String
+"""
 
 
 class HelperString(object):
@@ -11,11 +12,11 @@ class HelperString(object):
 
     @staticmethod
     def make_percentage(radio=None):
-        '''
+        """
         处理百分比
         :param radio: 要处理的数值
-        :return
-        '''
+        :return:
+        """
         pre_format = '%s%%'
         if not radio:
             return pre_format % 0

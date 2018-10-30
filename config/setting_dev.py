@@ -1,7 +1,7 @@
 # coding=utf-8
-'''
+"""
 测试配置
-'''
+"""
 from .settings import BaseSettings
 
 
@@ -11,7 +11,7 @@ class SettingDev(BaseSettings):
     """
 
     def __init__(self, arg):
-        super(SettingTest, self).__init__()
+        super(SettingDev, self).__init__()
         self.arg = arg
 
     HOST = '127.0.0.1'

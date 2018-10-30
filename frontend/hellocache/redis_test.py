@@ -1,24 +1,24 @@
 # -*- coding: utf-8 -*-
-'''
+"""
 缓存测试模块
 redis 测试
-'''
+"""
 from flask import request
 from loadclass.redis import LoadRedis
 from helper.helper_ret import HelperRet
 
 
 def redis_test(request):
-    '''
+    """
     测试下redis的操作
     postdata={
-                            "public":{"version":"208","packid":"100"},
-                            "request":{"method":"hellocache#redis_test","uid":"66","field":"nickname"},
-                            "extend":{"net":"wifi","device":"iphone  10  plus","macid":"aaaaaaaaaaaa"},
-                            "sig":"4ef43e75ad799f7775ed366d8c3fc8b8", 
-                            "debug":1
-                            }	
-    '''
+        "public":{"version":"208","packid":"100"},
+        "request":{"method":"hellocache#redis_test","uid":"66","field":"nickname"},
+        "extend":{"net":"wifi","device":"iphone  10  plus","macid":"aaaaaaaaaaaa"},
+        "sig":"4ef43e75ad799f7775ed366d8c3fc8b8",
+        "debug":1
+        }
+    """
     ret = dict()
     ret['host'] = request.host
     ret['host_url'] = request.host_url

@@ -1,11 +1,11 @@
 # coding=utf-8
-'''
+"""
 backend
 后台请求
 
 backend 使用 blueprint
 使用动态注册蓝图的方式，根据url路由访问
-'''
+"""
 
 import os
 import json

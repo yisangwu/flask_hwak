@@ -1,12 +1,12 @@
 # coding=utf-8
-'''
+"""
 mysql 配置
 
 使用pymysql数据库连接组件
 SQLAlchemy是一个很强大的关系型数据库框架，支持多种数据库后台。其不但提供了高层ORM，而且也提供了使用数据库原生SQL的底层功能。
 pip install pymysql
 pip install flask-sqlalchemy
-'''
+"""
 from sqlalchemy import create_engine
 
 
@@ -16,9 +16,36 @@ DB_USERNAME = 'mysql'
 DB_PASSWORD = 123456
 DB_CHARSET = 'utf8mb4'
 
+# 多库
+DB_DATABASES = ['flask_user', 'flask_friend']
+
+# mysql 资源连接符
+DB_URI = 'mysql+pymysql://%s:%s@%s:%s/{database}?charset=%s' % (
+    DB_USERNAME, DB_PASSWORD, DB_HOST, DB_PORT, DB_CHARSET)
+
+
+def mysql_create_engine(dbname=None):
+    """
+    创建engine
+    :param dbname:
+    :return:
+    """
+    if not dbname:
+        return None
+    dbname = dbname.strip()
+    if dbname not in DB_DATABASES:
+        return None
+
+    # echo= True 会打印操作数据库的信息
+    return create_engine(DB_URI.format(database=dbname), echo=True)
+
+
 # echo= True 会打印操作数据库的信息
-flask_user_engine = create_engine('mysql+pymysql://%s:%s@%s:%s/flask_user?charset=%s' %
-                                  (DB_USERNAME, DB_PASSWORD, DB_HOST, DB_PORT, DB_CHARSET), echo=True)
+# flask_user_engine = create_engine(
+#     DB_URI.format(database='flask_user'), echo=True)
+
+# flask_friend_engine = create_engine(
+#     DB_URI.format(database='flask_friend'), echo=True)
 
 
 '''
