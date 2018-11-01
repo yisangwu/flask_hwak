@@ -1,7 +1,7 @@
 # coding=utf-8
-'''
+"""
 group table
-'''
+"""
 from . import ModelBase
 from sqlalchemy import *
 
@@ -15,7 +15,7 @@ class Group(ModelBase):
 
     __tablename__ = 'group'
     __bind_key__ = 'flask_friend'
-    #__table_args__ = {'mysql_engine': 'InnoDB'}
+    # table_args__ = {'mysql_engine': 'InnoDB'}
 
     gid = Column(Integer, primary_key=True, comment='群ID')
     gname = Column(String(20), comment='群名称', nullable=False)

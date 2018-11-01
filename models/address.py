@@ -1,7 +1,7 @@
 # coding=utf-8
-'''
+"""
 table address
-'''
+"""
 from sqlalchemy import *
 metadata = MetaData()
 

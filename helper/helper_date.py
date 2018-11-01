@@ -7,6 +7,9 @@ Helper
 import datetime
 import time
 
+# 默认的日期Ymd-年月日格式
+DEFAULT_DATE_Ymd = '%Y-%m-%d'
+
 
 class HelperDate(object):
 
@@ -25,21 +28,31 @@ class HelperDate(object):
         """
         今天凌晨0点时间戳
         """
-        return int(time.mktime(time.strptime(str(HelperDate.date_today()), '%Y-%m-%d')))
+        return int(time.mktime(time.strptime(HelperDate.date_today(), DEFAULT_DATE_Ymd)))
 
     @staticmethod
-    def date_today():
+    def date_today(date_format=DEFAULT_DATE_Ymd):
         """
-        今天日期，%Y-%m-%d格式
+        今天日期，默认为%Y%m%d格式
+        :param date_format:
         :return:
         """
-        return datetime.date.doday()
+        return time.strftime(date_format, time.localtime())
 
     @staticmethod
-    def date_delta_today(day=1):
+    def date_before_today(days=1):
         """
-        几天前的凌晨零点时间戳
-        :param day:
+        今天前几天，%Y-%m-%d格式
+        :param days:  今天的前几天
         :return:
         """
-        return HelperDate.date_today() - datetime.timedelta(days=day)
+        return str(datetime.date.today() - datetime.timedelta(days=days))
+
+    @staticmethod
+    def date_after_today(days=1):
+        """
+        今天后几天，%Y-%m-%d格式
+        :param days:
+        :return: %Y-%m-%d
+        """
+        return str(datetime.date.today() + datetime.timedelta(days=days))

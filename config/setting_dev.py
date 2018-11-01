@@ -15,9 +15,7 @@ class SettingDev(BaseSettings):
         self.arg = arg
 
     HOST = '127.0.0.1'
-
     PORT = 8577
-
     DEBUG = True
-
+    TESTING = True
     SQLALCHEMY_ECHO = True

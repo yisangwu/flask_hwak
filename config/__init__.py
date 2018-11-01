@@ -24,6 +24,9 @@ PATH_FRONTEND = os.path.join(PATH_ROOT, 'frontend')
 # backend 目录
 PATH_BACKEND = os.path.join(PATH_ROOT, 'backend')
 
+# log日志目录
+PATH_LOG = os.path.join(PATH_ROOT, 'logs')
+
 
 def load_settings():
     """

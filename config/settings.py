@@ -20,6 +20,9 @@ app = Flask(__name__)
 4. 通过配置文件
    app.config.from_pyfile('dev_config.py') #  这里dev_config.py是文件
 """
+import os
+from config import PATH_LOG
+from helper.helper_date import HelperDate
 
 
 class BaseSettings(object):
@@ -59,3 +62,15 @@ class BaseSettings(object):
     SQLALCHEMY_POOL_TIMEOUT = 10
     # 如果设置成 True (默认情况)，Flask-SQLAlchemy 将会追踪对象的修改并且发送信号。这需要额外的内存， 如果不必要的可以禁用它。
     SQLALCHEMY_TRACK_MODIFICATIONS = False
+
+    # logging
+    LOG_LEVEL = 'DEBUG'
+    LOG_FILE = os.path.join(PATH_LOG, HelperDate.date_today() + '.log')
+    LOG_FORMAT = os.linesep.join(
+        (
+            '%(asctime)s - [%(levelname)s]:',
+            '[%(filename)s]-[%(module)s:%(funcName)s:%(lineno)d]--%(message)s'
+         )
+    )
+
+

@@ -12,6 +12,7 @@ class LoadMysql(ObjSingleton):
 
     @staticmethod
     def db_user():
-        from config.mysql import flask_user_engine
-            Session_User = sessionmaker(bind=flask_user_engine)
-            return Session_User()
+        pass
+        # from config.mysql import flask_user_engine
+        #     Session_User = sessionmaker(bind=flask_user_engine)
+        #     return Session_User()
