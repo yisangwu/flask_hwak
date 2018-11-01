@@ -65,11 +65,12 @@ class BaseSettings(object):
 
     # logging
     LOG_LEVEL = 'DEBUG'
-    LOG_FILE = os.path.join(PATH_LOG, HelperDate.date_today() + '.log')
+    LOG_FILE = os.path.join(PATH_LOG, '%s_'+HelperDate.date_today() + '.log')
     LOG_FORMAT = os.linesep.join(
         (
-            '%(asctime)s - [%(levelname)s]:',
-            '[%(filename)s]-[%(module)s:%(funcName)s:%(lineno)d]--%(message)s'
+            '%(asctime)s - [%(levelname)s]:[%(filename)s]-[%(module)s:%(funcName)s:%(lineno)d]',
+            '    %(message)s',
+            '-' * 80
          )
     )
 
