@@ -4,6 +4,7 @@ Helper Log
 """
 import logging
 from config import load_settings
+from helper.helper_class import ObjSingleton
 
 
 LOG_TYPE_DICT = dict(
@@ -15,7 +16,7 @@ LOG_TYPE_DICT = dict(
 )
 
 
-class HelperLog(object):
+class HelperLog(ObjSingleton):
     logger = None
     settings = None
 
