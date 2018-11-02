@@ -21,10 +21,12 @@ class HelperRet(object):
 
     @staticmethod
     def wraps_parse_params(func):
-        '''
+        """
         装饰器
         解析请求参数postdata
-        '''
+        :param func:
+        :return:
+        """
         @functools.wraps(func)
         def parse_params(*args, **kwargs):
             # 获取参数， 客户端以表单方式传参

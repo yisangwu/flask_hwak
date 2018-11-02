@@ -68,7 +68,8 @@ class BaseSettings(object):
     LOG_FILE = os.path.join(PATH_LOG, '%s_'+HelperDate.date_today() + '.log')
     LOG_FORMAT = os.linesep.join(
         (
-            '%(asctime)s - [%(levelname)s]:[%(filename)s]-[%(module)s:%(funcName)s:%(lineno)d]',
+            '%(asctime)s-【%(levelname)s】:[%(filename)s-%(module)s]=>[%(funcName)s:%(lineno)d]',
+            '%(pathname)s',
             '    %(message)s',
             '-' * 80
          )
