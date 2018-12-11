@@ -72,7 +72,9 @@ class HelperLog(ObjSingleton):
             log_level = settings.LOG_LEVEL
 
         logger = logging.getLogger(log_name)
-        handler = logging.FileHandler(settings.LOG_FILE % log_name, encoding='UTF-8')
+        #handler = logging.FileHandler(settings.LOG_FILE % (log_name, log_name), encoding='UTF-8')
+        handler = logging.FileHandler(
+            settings._make_logfile(log_name), encoding='UTF - 8')
         handler.setLevel(log_level)
         logging_format = logging.Formatter(settings.LOG_FORMAT)
         handler.setFormatter(logging_format)
@@ -93,7 +95,8 @@ class HelperLog(ObjSingleton):
 
         log_handler_list = list()
         for log_name, log_level in LOG_TYPE_DICT.items():
-            handler = logging.FileHandler(settings.LOG_FILE % log_name, encoding='UTF-8')
+            handler = logging.FileHandler(
+                settings.LOG_FILE % log_name, encoding='UTF-8')
             if not log_level:
                 log_level = settings.LOG_LEVEL
             handler.setLevel(log_level)
@@ -117,7 +120,8 @@ class HelperLog(ObjSingleton):
         if not settings:
             return False
 
-        handler = logging.FileHandler(settings.LOG_FILE % app_name, encoding='UTF-8')
+        handler = logging.FileHandler(
+            settings.LOG_FILE % app_name, encoding='UTF-8')
         handler.setLevel(settings.LOG_LEVEL)
         logging_format = logging.Formatter(settings.LOG_FORMAT)
         handler.setFormatter(logging_format)

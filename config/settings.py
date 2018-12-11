@@ -64,15 +64,25 @@ class BaseSettings(object):
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
     # logging
+    def _make_logfile(log_name=''):
+        # 如果未指定日志，则混合记录一起
+        if not log_name:
+            return os.path.join(PATH_LOG, 'mixed_' + HelperDate.date_today() + '.log')
+        # 每个日志一个目录
+        log_dir = os.path.join(PATH_LOG, '%s' % log_name)
+        # 目录不存在，则创建
+        if not os.path.exists(log_dir):
+            os.makedirs(log_dir, 0o777)
+
+        return os.path.join(log_dir, '%s_' + HelperDate.date_today() + '.log') % log_name
+
     LOG_LEVEL = 'DEBUG'
-    LOG_FILE = os.path.join(PATH_LOG, '%s_'+HelperDate.date_today() + '.log')
+    #LOG_FILE = os.path.join(PATH_LOG, '%s_' + os.sep + '%s' + HelperDate.date_today() + '.log')
     LOG_FORMAT = os.linesep.join(
         (
             '%(asctime)s-【%(levelname)s】:[%(filename)s-%(module)s]=>[%(funcName)s:%(lineno)d]',
             '%(pathname)s',
             '    %(message)s',
             '-' * 80
-         )
+        )
     )
-
-

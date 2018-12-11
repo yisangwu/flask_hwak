@@ -12,7 +12,7 @@ class ObjSingleton(object):
     """
     def __new__(cls, *args, **kwargs):
         if not hasattr(cls, '_instance'):
-            cls._instance = super(HelperSingleton, cls).__new__(
+            cls._instance = super(ObjSingleton, cls).__new__(
                 cls, *args, **kwargs)
         return cls._instance
 
